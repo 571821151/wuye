@@ -4,7 +4,7 @@ public class Owner {
 	 private int ownerID;
 	 private String ownerName ;
 	 private String ownerTel ;
-	 private String ownerInfo;
+	 private int ownerHouseId;
 	 private String ownerDel ;
 	 private String ownerCart ;
 	 private String update_Tm;
@@ -26,11 +26,11 @@ public class Owner {
 	public void setOwnerTel(String ownerTel) {
 		this.ownerTel = ownerTel;
 	}
-	public String getOwnerInfo() {
-		return ownerInfo;
+	public int getOwnerInfo() {
+		return ownerHouseId;
 	}
-	public void setOwnerInfo(String ownerInfo) {
-		this.ownerInfo = ownerInfo;
+	public void setOwnerInfo(int ownerHouseId) {
+		this.ownerHouseId = ownerHouseId;
 	}
 	public String getOwnerDel() {
 		return ownerDel;
@@ -54,9 +54,6 @@ public class Owner {
 	@Override
 	public String toString() {
 		return "Owner [ownerID=" + ownerID + ", ownerName=" + ownerName + ", ownerTel=" + ownerTel + ", ownerInfo="
-				+ ownerInfo + ", ownerDel=" + ownerDel + ", ownerCart=" + ownerCart + ", update_Tm=" + update_Tm + "]";
+				+ ownerHouseId + ", ownerDel=" + ownerDel + ", ownerCart=" + ownerCart + ", update_Tm=" + update_Tm + "]";
 	}
-	
-
-	
 }

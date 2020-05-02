@@ -62,7 +62,17 @@ public class RepairController {
 	@RequestMapping(value ="/update", method = RequestMethod.POST)
 	public Stuts update(@ModelAttribute Repair Repair) {
 	 return	repairservice.update(Repair);
-	
+	}
+	@RequestMapping(value ="/fix/{RepairID}/{fixerID}", method = RequestMethod.GET)
+	public Stuts fix(@PathVariable("RepairID")  int RepairID,@PathVariable("fixerID")  int fixerID) {
+		Info<Repair> repairInfo= repairservice.selectById(RepairID);
+		Repair repair=	repairInfo.getT();
+		repair.setFixerId(fixerID);
+		//设置维修状态
+		repair.setRepairStates(1);
+		Stuts s=repairservice.update(repair);
+		s.setMessage("维修单状态设置成功");
+		return	s;
 	}
 	
 }
