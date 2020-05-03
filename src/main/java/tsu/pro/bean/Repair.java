@@ -6,6 +6,16 @@ public class Repair {
     private String repariID;
     private String repairMoney;
     private String repairInfo;
+
+    public String getRepairDes() {
+        return repairDes;
+    }
+
+    public void setRepairDes(String repairDes) {
+        this.repairDes = repairDes;
+    }
+
+    private String repairDes;
     private int ownerID;
 
 

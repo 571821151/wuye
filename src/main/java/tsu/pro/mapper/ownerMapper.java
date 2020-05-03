@@ -13,7 +13,7 @@ import tsu.pro.bean.User;
 
 @Mapper
 public interface ownerMapper {
-    @Insert("insert into Owners(ownerName,ownerTel,ownerInfo,ownerDel,ownerCart,update_Tm) values(#{ownerName},#{ownerTel},#{ownerInfo},#{ownerDel},#{ownerCart},#{update_Tm})")
+    @Insert("insert into Owners(ownerName,ownerTel,ownerHouseId,ownerDel,ownerCart,update_Tm) values(#{ownerName},#{ownerTel},#{ownerHouseId},0 ,#{ownerCart},#{update_Tm})")
 	int insert(Owner owner);
     @Select("select * from Owners")
     List<Owner> selectlist();

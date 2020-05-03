@@ -52,8 +52,16 @@ public class RepairController {
 	@RequestMapping(value ="/{ownerID}", method = RequestMethod.GET)
 	public Info<Repair> findlike(@PathVariable("ownerID")  int ownerID) {
 	 return	repairservice.findLike(ownerID);
-	
 	}
+
+	/**
+	 * 模糊查询保修信息
+	 */
+	@RequestMapping(value ="/status/{status}", method = RequestMethod.GET)
+	public Info<Repair> findByStatus(@PathVariable("status")  int status) {
+		return	repairservice.findByStatus(status);
+	}
+
 	@RequestMapping(value ="/delete/{id}", method = RequestMethod.GET)
 	public Stuts deleteByID(@PathVariable("id")  int RepairID) {
 	 return	repairservice.deleteByID(RepairID);

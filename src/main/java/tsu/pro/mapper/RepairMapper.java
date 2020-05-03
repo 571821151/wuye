@@ -16,9 +16,11 @@ public interface RepairMapper {
 	List<Repair> selectlist();
      @Select("select * from repairS where ownerID=#{ownerID} ")
 	List<Repair> selectlike(int ownerID);
+    @Select("select * from repairS where repairStates=#{status} ")
+    List<Repair> selectByStatus(int status);
     @Delete("delete from repairS where repariID=#{repariID}")
 	int delete(int repairID);
-    @Update("update repairS set repairMoney=#{repairMoney},repairInfo=#{repairInfo},ownerID=#{ownerID},expectTime=#{expectTime},repairDel=#{repairDel},repairIdentify=#{repairIdentify},update_Tm=#{update_Tm},repairStates=#{repairStates},fixerId=#{fixerId},fixDes=#{fixDes},repairImg1=#{repairImg1},repairImg2=#{repairImg2},repairImg3=#{repairImg3},repairImg4=#{repairImg4},repairImg5=#{repairImg5},fixImg1=#{fixImg1},fixImg2=#{fixImg2},fixImg3=#{fixImg3},fixImg4=#{fixImg4},fixImg5=#{fixImg5} where repariID=#{repariID}")
+    @Update("update repairS set repairMoney=#{repairMoney},repairInfo=#{repairInfo},repairDes=#{repairDes},ownerID=#{ownerID},expectTime=#{expectTime},repairDel=#{repairDel},repairIdentify=#{repairIdentify},update_Tm=#{update_Tm},repairStates=#{repairStates},fixerId=#{fixerId},fixDes=#{fixDes},repairImg1=#{repairImg1},repairImg2=#{repairImg2},repairImg3=#{repairImg3},repairImg4=#{repairImg4},repairImg5=#{repairImg5},fixImg1=#{fixImg1},fixImg2=#{fixImg2},fixImg3=#{fixImg3},fixImg4=#{fixImg4},fixImg5=#{fixImg5} where repariID=#{repariID}")
 	int update(Repair repair);
     @Select("select * from repairS where repariID=#{repariID}")
    Repair selectId(int repairID);
