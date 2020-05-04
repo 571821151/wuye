@@ -40,7 +40,6 @@ public class RepairController {
             if (owner != null) {
                 House house = houseService.selectById(owner.getownerHouseId()).getT();
                 try {
-
                     UserController.users.forEach((k, v) -> {
                         if (!v.getClientid().isEmpty()) {
                             List<Permission> listp = v.getPer();

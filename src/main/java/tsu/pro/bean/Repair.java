@@ -21,15 +21,11 @@ public class Repair {
     private int ownerID;
 
 
-
     private int position;
     private String repairDel;
     private String repairIdentify;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date update_Tm;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date expectTime;
+    private String update_Tm;
+    private String expectTime;
     private String fixDes;
     private String repairImg1;
     private String repairImg2;
@@ -45,6 +41,7 @@ public class Repair {
 
 
     private int repairStates;
+
     public int getPosition() {
         return position;
     }
@@ -52,11 +49,12 @@ public class Repair {
     public void setPosition(int position) {
         this.position = position;
     }
-    public Date getExpectTime() {
+
+    public String getExpectTime() {
         return expectTime;
     }
 
-    public void setExpectTime(Date expectTime) {
+    public void setExpectTime(String expectTime) {
         this.expectTime = expectTime;
     }
 
@@ -167,11 +165,11 @@ public class Repair {
     }
 
 
-    public Date getUpdate_Tm() {
+    public String getUpdate_Tm() {
         return update_Tm;
     }
 
-    public void setUpdate_Tm(Date update_Tm) {
+    public void setUpdate_Tm(String update_Tm) {
         this.update_Tm = update_Tm;
     }
 
