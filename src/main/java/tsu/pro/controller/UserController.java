@@ -70,18 +70,36 @@ public class UserController {
         return userService.deleteUser(id);
     }
 
+    @RequestMapping(value = "/login/{name}/{password}/{clientid}", method = RequestMethod.POST)
+    public userInfo<User> loginUserWithClientid(@PathVariable("name") String name, @PathVariable String password, @PathVariable String clientid, HttpSession
+            session) {
+        userInfo<User> userInfo = userService.finduser(name, password);
+        if (userInfo != null) {
+            User user=userInfo.getT();
+            session.setAttribute(WebSecurityConfig.SESSION_KEY, user.getName());
+            users.put(name, user);
+            if (!clientid.isEmpty()) {
+                user.setClientid(clientid);
+                userService.updateUser(user);
+            }
+        }
+
+
+        return userInfo;
+    }
     @RequestMapping(value = "/login/{name}/{password}", method = RequestMethod.POST)
     public userInfo<User> loginUser(@PathVariable("name") String name, @PathVariable String password, HttpSession
             session) {
         userInfo<User> userInfo = userService.finduser(name, password);
         if (userInfo != null) {
-            session.setAttribute(WebSecurityConfig.SESSION_KEY, userInfo.getT().getName());
-            users.put(name, userInfo.getT());
+            User user=userInfo.getT();
+            session.setAttribute(WebSecurityConfig.SESSION_KEY, user.getName());
+            users.put(name, user);
         }
 
-        return userService.finduser(name, password);
-    }
 
+        return userInfo;
+    }
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
     public String loginOut(HttpSession session) {

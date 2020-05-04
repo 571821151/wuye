@@ -4,89 +4,100 @@ import java.util.Collection;
 import java.util.List;
 
 public class User<T> {
-	private int Id;
-	private String Name;
-	private String Password;
-	private String Email;
-	private String Phone;
-	private String nickName;
-	private List<T> Per;
-	private String status;
-	public String getNickName() {
-		return nickName;
-	}
+    private int Id;
+    private String Name;
+    private String Password;
+    private String Email;
+    private String Phone;
+    private String nickName;
+    private String clientid;
+    private List<T> Per;
+    private String status;
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public String getStatus() {
-		return status;
-	}
+    public String getClientid() {
+        return clientid;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setClientid(String clientid) {
+        this.clientid = clientid;
+    }
 
-	
 
-	public List<T> getPer() {
-		return Per;
-	}
+    public String getNickName() {
+        return nickName;
+    }
 
-	public void setPer(List<T> per) {
-		Per = per;
-	}
-	public String getName() {
-		return Name;
-	}
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	public void setName(String name) {
-		Name = name;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getPassword() {
-		return Password;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public int getId() {
-		return Id;
-	}
 
-	public void setId(int id) {
-		Id = id;
-	}
+    public List<T> getPer() {
+        return Per;
+    }
 
-	public void setPassword(String password) {
-		Password = password;
-	}
+    public void setPer(List<T> per) {
+        Per = per;
+    }
 
-	public String getEmail() {
-		return Email;
-	}
+    public String getName() {
+        return Name;
+    }
 
-	public void setEmail(String email) {
-		Email = email;
-	}
+    public void setName(String name) {
+        Name = name;
+    }
 
-	public String getPhone() {
-		return Phone;
-	}
+    public String getPassword() {
+        return Password;
+    }
 
-	public void setPhone(String phone) {
-		Phone = phone;
-	}
+    public int getId() {
+        return Id;
+    }
 
-	public static Collection<? extends User> values() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void setId(int id) {
+        Id = id;
+    }
 
-	@Override
-	public String toString() {
-		return "User [Id=" + Id + ", Name=" + Name + ", Password=" + Password + ", Email=" + Email + ", Phone=" + Phone
-				+ ", Per=" + Per + ", status=" + status + "]";
-	}
+    public void setPassword(String password) {
+        Password = password;
+    }
 
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public static Collection<? extends User> values() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "User [Id=" + Id + ", Name=" + Name + ", Password=" + Password + ", Email=" + Email + ", Phone=" + Phone
+                + ", Per=" + Per + ", status=" + status + "]";
+    }
 
 
 }

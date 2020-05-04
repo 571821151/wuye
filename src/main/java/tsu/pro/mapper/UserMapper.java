@@ -36,7 +36,7 @@ public interface UserMapper {
     @Select("select * from Users where Name=#{name} and Password=#{password}")
     User finduserByName(@Param("name") String name, @Param("password") String password);
 
-    @Update("update Users set Name=#{Name},Password=#{password},Email=#{email},Phone=#{phone} where Id=#{Id}")
+    @Update("update Users set Name=#{Name},Password=#{password},Email=#{email},Phone=#{phone},nickName=#{nickName},clientid=#{clientid} where Id=#{Id}")
     int updateUser(User user);
 
     @Delete("delete from Users where Id=#{id}")

@@ -21,6 +21,8 @@ public class SingleNotityUtils {
     private static String appKey = "uBu0HK1UKX95QJSMYJt8O6";
     private static String masterSecret = "ttZeyTmPTv8YUtUKMMFem5";
     private static String url = "http://sdk.open.api.igexin.com/apiex.htm";
+    public static String title = "报修";
+    public static String text = "您有一条新的报修订单";
 
     public static void sendAllUserMsg(String title, String text) throws IOException {
 
@@ -57,12 +59,14 @@ public class SingleNotityUtils {
         System.out.println(ret.getResponse().toString());
     }
 
-
-    static String CID = "";
-
-    public static void main(String[] args) {
+    //发送一个通知到客户端
+    public static void SengOneCid(String title, String text, String CID) {
         IGtPush push = new IGtPush(url, appKey, masterSecret);
-        NotificationTemplate template = getNotificationTemplate();
+        if (title.isEmpty())
+            title = SingleNotityUtils.title;
+        if (text.isEmpty())
+            text = SingleNotityUtils.text;
+        NotificationTemplate template = getNotificationTemplate(title, text);
         SingleMessage message = new SingleMessage();
         message.setOffline(true);
         // 离线有效时间，单位为毫秒
@@ -90,7 +94,7 @@ public class SingleNotityUtils {
         }
     }
 
-    public static NotificationTemplate getNotificationTemplate() {
+    public static NotificationTemplate getNotificationTemplate(String title, String content) {
         NotificationTemplate template = new NotificationTemplate();
         // 设置APPID与APPKEY
         template.setAppId(appId);
@@ -98,8 +102,8 @@ public class SingleNotityUtils {
 
         Style0 style = new Style0();
         // 设置通知栏标题与内容
-        style.setTitle("请输入通知栏标题");
-        style.setText("请输入通知栏内容");
+        style.setTitle(title);
+        style.setText(content);
         // 配置通知栏图标
         style.setLogo("icon.png");
         // 配置通知栏网络图标

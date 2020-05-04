@@ -1,5 +1,7 @@
 package tsu.pro.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Repair {
@@ -23,9 +25,10 @@ public class Repair {
     private int position;
     private String repairDel;
     private String repairIdentify;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date update_Tm;
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date expectTime;
     private String fixDes;
     private String repairImg1;

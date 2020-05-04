@@ -12,9 +12,11 @@ import tsu.pro.bean.Repair;
 import tsu.pro.service.HouseService;
 import tsu.pro.service.OwnerService;
 import tsu.pro.service.repairService;
+import tsu.pro.utils.SingleNotityUtils;
 import tsu.pro.utils.UserUtils;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/repair")
@@ -37,7 +39,26 @@ public class RepairController {
             Owner owner = ownerService.selectByUserId(user.getId()).getT();
             if (owner != null) {
                 House house = houseService.selectById(owner.getownerHouseId()).getT();
-                return repairservice.insertRepair(Repair, user.getId(),house);
+                try {
+
+                    UserController.users.forEach((k, v) -> {
+                        if (!v.getClientid().isEmpty()) {
+                            List<Permission> listp = v.getPer();
+                            if (listp.size() > 0) {
+                                listp.forEach(p -> {
+                                    if (p.getId() == 10003) {
+                                        SingleNotityUtils.SengOneCid("", "", v.getClientid());
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+
+                }
+
+
+                return repairservice.insertRepair(Repair, user.getId(), house);
             } else
                 stuts.setMessage("该用户非业主");
         } else
