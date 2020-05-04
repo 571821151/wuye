@@ -26,10 +26,10 @@ public class Owner {
 	public void setOwnerTel(String ownerTel) {
 		this.ownerTel = ownerTel;
 	}
-	public int getOwnerInfo() {
+	public int getownerHouseId() {
 		return ownerHouseId;
 	}
-	public void setOwnerInfo(int ownerHouseId) {
+	public void setownerHouseId(int ownerHouseId) {
 		this.ownerHouseId = ownerHouseId;
 	}
 	public String getOwnerDel() {

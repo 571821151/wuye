@@ -31,7 +31,7 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
-    static Map<String, User> users = Collections.synchronizedMap(new HashMap<String, User>());
+    public static Map<String, User> users = Collections.synchronizedMap(new HashMap<String, User>());
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -73,7 +73,11 @@ public class UserController {
     @RequestMapping(value = "/login/{name}/{password}", method = RequestMethod.POST)
     public userInfo<User> loginUser(@PathVariable("name") String name, @PathVariable String password, HttpSession
             session) {
-        session.setAttribute(WebSecurityConfig.SESSION_KEY, name);
+        userInfo<User> userInfo = userService.finduser(name, password);
+        if (userInfo != null) {
+            session.setAttribute(WebSecurityConfig.SESSION_KEY, userInfo.getT().getName());
+            users.put(name, userInfo.getT());
+        }
 
         return userService.finduser(name, password);
     }
@@ -81,7 +85,9 @@ public class UserController {
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
     public String loginOut(HttpSession session) {
+        Object name = session.getAttribute(WebSecurityConfig.SESSION_KEY);
         session.removeAttribute(WebSecurityConfig.SESSION_KEY);
+        users.remove(name);
         return "ok";
     }
 

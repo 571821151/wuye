@@ -55,6 +55,25 @@ public class OwnerService {
 		
 	}
 
+	public Info<Owner> selectByUserId(int UserId) {
+		Info<Owner> info=new Info<Owner>();
+		Owner owner=new Owner();
+		owner=ownermapper.selectuserId(UserId);
+		if(owner!=null){
+			info.setT(owner);
+			info.setMesage("查询成功");
+			info.setStatus("ok");
+			return info;
+		}
+		else{
+			info.setMesage("查询失败");
+			info.setStatus("error");
+			return info;
+		}
+
+
+	}
+
 	public Info<Owner> findList() {
 		Info<Owner> info=new Info<Owner>();
 		List<Owner> list=new ArrayList<Owner>();

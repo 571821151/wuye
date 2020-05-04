@@ -13,6 +13,8 @@ import java.util.ArrayList;
 @Mapper
 public interface LivingAreaMapper {
     @Select("select * from livingarea")
-	ArrayList<LivingArea> queryAll();
+    ArrayList<LivingArea> queryAll();
 
+    @Select("select * from livingarea where id=#{id}")
+    LivingArea selectById(int id);
 }

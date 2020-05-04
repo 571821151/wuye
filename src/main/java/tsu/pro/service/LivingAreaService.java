@@ -13,25 +13,39 @@ import java.util.List;
 
 @Service
 public class LivingAreaService {
-@Autowired
-  private LivingAreaMapper livingAreaMapper;
+	@Autowired
+	private LivingAreaMapper livingAreaMapper;
 
 	public Info<LivingArea> findList() {
-		Info<LivingArea> info=new Info<LivingArea>();
-		List<LivingArea> list=new ArrayList<LivingArea>();
-		list=livingAreaMapper.queryAll();
-		if(!list.isEmpty()){
+		Info<LivingArea> info = new Info<LivingArea>();
+		List<LivingArea> list = new ArrayList<LivingArea>();
+		list = livingAreaMapper.queryAll();
+		if (!list.isEmpty()) {
 			info.setInfos(list);
 			info.setStatus("ok");
 			info.setMesage("成功");
 			return info;
-		}
-		else{
+		} else {
 			info.setStatus("error");
 			info.setMesage("失败");
 			return info;
 		}
 	}
 
+	public Info<LivingArea> selectById(int id) {
+		Info<LivingArea> info = new Info<LivingArea>();
+		LivingArea Charge = new LivingArea();
+		Charge = livingAreaMapper.selectById(id);
+		if (Charge != null) {
+			info.setT(Charge);
+			info.setMesage("查询成功");
+			info.setStatus("ok");
+			return info;
+		} else {
+			info.setMesage("查询失败");
+			info.setStatus("error");
+			return info;
+		}
 
+	}
 }

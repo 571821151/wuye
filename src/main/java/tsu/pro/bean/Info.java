@@ -7,11 +7,6 @@ public class Info<T> {
    private String mesage;
 	private List<T> infos;
     private T t;
-    
-  
-	
-
-
 	public T getT() {
 		return t;
 	}

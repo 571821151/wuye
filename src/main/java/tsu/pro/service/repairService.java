@@ -6,11 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tsu.pro.bean.*;
 import tsu.pro.bean.Repair;
-import tsu.pro.bean.Info;
-import tsu.pro.bean.Owner;
-import tsu.pro.bean.Repair;
-import tsu.pro.bean.Stuts;
 import tsu.pro.mapper.RepairMapper;
 
 @Service
@@ -18,8 +15,12 @@ public class repairService {
     @Autowired
     private RepairMapper RepairMapper;
 
-    public Stuts insertRepair(Repair Repair) {
+    public Stuts insertRepair(Repair Repair, int userId, House house) {
         Stuts st = new Stuts();
+        Repair.setOwnerID(userId);
+        if (Repair.getPosition() == 0) {
+            Repair.setRepairInfo(house.getHouseDes() + house.getHouseName());
+        }
         int status = RepairMapper.insert(Repair);
         if (status == 1) {
             st.setStuts("ok");
@@ -85,11 +86,11 @@ public class repairService {
         }
     }
 
-    public Info<Repair> findByStatus(int status) {
+    public Info<Repair> findByStatus(int status, int userId) {
         Info<Repair> info = new Info<Repair>();
         List<Repair> list = new ArrayList<Repair>();
-        list = RepairMapper.selectByStatus(status);
-        if (list.isEmpty()) {
+        list = RepairMapper.selectByStatus(status, userId);
+        if (!list.isEmpty()) {
             info.setInfos(list);
             info.setStatus("ok");
             info.setMesage("成功");
