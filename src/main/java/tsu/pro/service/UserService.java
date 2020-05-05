@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import tsu.pro.bean.*;
 import tsu.pro.dao.UserDao;
+import tsu.pro.mapper.HouseMapper;
 import tsu.pro.mapper.RoleMapper;
 import tsu.pro.mapper.UserMapper;
 
@@ -20,6 +21,8 @@ public class UserService {
     UserDao userdao;
     @Autowired
     RoleMapper rolemapper;
+    @Autowired
+    HouseMapper houseMapper;
 
     public String insertUser(@SuppressWarnings("rawtypes") User user) {
 
@@ -66,7 +69,7 @@ public class UserService {
 
     }
 
-    public userInfo finduser(String name, String password) {
+    public userInfo findUser(String name, String password) {
         userInfo<User> info = new userInfo<User>();
         User<Permission> user = new User<Permission>();
 
@@ -77,6 +80,9 @@ public class UserService {
 
                 User_Role ur = rolemapper.queryRoleByUserid(user.getId());
                 user.setUserRole(ur.getRole_id());
+                House house = houseMapper.getByUserId(user.getId());
+                if (house != null)
+                    user.setHouserDes(house.getHouseDes() + house.getHouseName());
 
             } catch (Exception e) {
             }

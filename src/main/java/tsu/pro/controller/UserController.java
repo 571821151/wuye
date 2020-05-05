@@ -1,9 +1,7 @@
 package tsu.pro.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import tsu.pro.bean.Stuts;
 import tsu.pro.bean.User;
 import tsu.pro.bean.userInfo;
 import tsu.pro.mapper.UserMapper;
@@ -73,7 +70,7 @@ public class UserController {
     @RequestMapping(value = "/login/{name}/{password}/{clientid}", method = RequestMethod.POST)
     public userInfo<User> loginUserWithClientid(@PathVariable("name") String name, @PathVariable String password, @PathVariable String clientid, HttpSession
             session) {
-        userInfo<User> userInfo = userService.finduser(name, password);
+        userInfo<User> userInfo = userService.findUser(name, password);
         if (userInfo != null) {
             User user=userInfo.getT();
             session.setAttribute(WebSecurityConfig.SESSION_KEY, user.getName());
@@ -90,7 +87,7 @@ public class UserController {
     @RequestMapping(value = "/login/{name}/{password}", method = RequestMethod.POST)
     public userInfo<User> loginUser(@PathVariable("name") String name, @PathVariable String password, HttpSession
             session) {
-        userInfo<User> userInfo = userService.finduser(name, password);
+        userInfo<User> userInfo = userService.findUser(name, password);
         if (userInfo != null) {
             User user=userInfo.getT();
             session.setAttribute(WebSecurityConfig.SESSION_KEY, user.getName());

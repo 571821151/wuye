@@ -11,6 +11,11 @@ import java.util.ArrayList;
 public interface HouseMapper {
     @Select("select * from house")
 	ArrayList<House> queryAll();
+
     @Select("select * from house where id =#{ id}")
     House getByid(int id);
+
+
+    @Select("SELECT house.areaId, house.id, house.houseName, house.houseDes FROM house, owners, users WHERE owners.userId = users.ID  AND owners.ownerHouseId = house.id  AND users.ID =#{userId}")
+    House getByUserId(int userId);
 }

@@ -12,14 +12,22 @@ public class User<T> {
     private String nickName;
     private String clientid;
     private List<T> Per;
-
-
-
     private int userRole;
+
+    public String getHouserDes() {
+        return HouserDes;
+    }
+
+    public void setHouserDes(String houserDes) {
+        HouserDes = houserDes;
+    }
+
+    private String HouserDes;
 
     public String getClientid() {
         return clientid;
     }
+
     public int getUserRole() {
         return userRole;
     }
@@ -27,6 +35,7 @@ public class User<T> {
     public void setUserRole(int userRole) {
         this.userRole = userRole;
     }
+
     public void setClientid(String clientid) {
         this.clientid = clientid;
     }
@@ -39,7 +48,6 @@ public class User<T> {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-
 
 
     public List<T> getPer() {
