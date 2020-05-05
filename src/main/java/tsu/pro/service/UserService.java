@@ -31,8 +31,8 @@ public class UserService {
         } else {
             try {
                 User_Role role = new User_Role();
-                role.setUser_Id(userMapper.findUserByUserName(user.getName()).getId());
-                role.setRoled_id(1);
+                role.setUser_id(userMapper.findUserByUserName(user.getName()).getId());
+                role.setRole_id(1);
                 rolemapper.userAddRole(role);
 
                 return "插入成功";
@@ -73,6 +73,13 @@ public class UserService {
         user = userMapper.finduserByName(name, password);
         if (null != user) {
             user.setPer(userdao.selectPermission(user));
+            try {
+
+                User_Role ur = rolemapper.queryRoleByUserid(user.getId());
+                user.setUserRole(ur.getRole_id());
+
+            } catch (Exception e) {
+            }
             info.setStatus("ok");
             info.setMessage("登录成功");
             info.setT(user);
@@ -82,6 +89,7 @@ public class UserService {
             info.setMessage("登录失败");
             return info;
         }
+
     }
 
     @SuppressWarnings("rawtypes")

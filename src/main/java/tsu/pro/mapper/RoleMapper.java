@@ -12,13 +12,19 @@ import tsu.pro.bean.User_Role;
 
 @Mapper
 public interface RoleMapper {
-	@Insert("insert into role(rolename,message) values(#{roleName},#{Message})")
-      int addRole(Role role);
+    @Insert("insert into role(rolename,message) values(#{roleName},#{Message})")
+    int addRole(Role role);
+
     @Select("select * from role")
-	ArrayList<Role> queryAll();
+    ArrayList<Role> queryAll();
+
+    @Select("select * from user_role where user_id=#{userId}")
+    User_Role queryRoleByUserid(int userId);
+
     @Delete("delete from role where id=#{id}")
-	int deleteRole(int id);
+    int deleteRole(int id);
+
     @Insert("insert into user_role(user_id,role_id) values(#{User_Id},#{Roled_id})")
-	int userAddRole(User_Role ur);
+    int userAddRole(User_Role ur);
 
 }

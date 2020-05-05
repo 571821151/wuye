@@ -12,12 +12,21 @@ public class User<T> {
     private String nickName;
     private String clientid;
     private List<T> Per;
-    private String status;
+
+
+
+    private int userRole;
 
     public String getClientid() {
         return clientid;
     }
+    public int getUserRole() {
+        return userRole;
+    }
 
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
+    }
     public void setClientid(String clientid) {
         this.clientid = clientid;
     }
@@ -31,13 +40,6 @@ public class User<T> {
         this.nickName = nickName;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
 
     public List<T> getPer() {
@@ -96,7 +98,7 @@ public class User<T> {
     @Override
     public String toString() {
         return "User [Id=" + Id + ", Name=" + Name + ", Password=" + Password + ", Email=" + Email + ", Phone=" + Phone
-                + ", Per=" + Per + ", status=" + status + "]";
+                + ", Per=" + Per + ", status=" + userRole + "]";
     }
 
 

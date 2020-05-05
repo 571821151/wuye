@@ -31,7 +31,6 @@ public class RoleController {
    @RequestMapping(value="/", method=RequestMethod.GET)
    public RoleInfo<Role> findAll(){
 	   return roleservice.findAll();
- 
    }
 
    @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
