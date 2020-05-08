@@ -1,8 +1,11 @@
 package tsu.pro.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,8 @@ public class repairService {
     public Stuts insertRepair(Repair Repair, int userId, House house) {
         Stuts st = new Stuts();
         Repair.setOwnerID(userId);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+        Repair.setUpdate_Tm(df.format(new Date()));
         if (Repair.getPosition() == 0) {
             Repair.setRepairInfo(house.getHouseDes() + house.getHouseName());
         }

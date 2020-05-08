@@ -17,12 +17,12 @@ import java.util.List;
 public class SingleNotityUtils {
 
     // STEP1：获取应用基本信息
-    private static String appId = "Gf3ip7k23dAAOfqXgbttP7";
-    private static String appKey = "uBu0HK1UKX95QJSMYJt8O6";
-    private static String masterSecret = "ttZeyTmPTv8YUtUKMMFem5";
+    private static String appId = "Y3j9A2YHoc6UxB9hho7G65";
+    private static String appKey = "sADG9GsyrX7J2UWanDOgD6";
+    private static String masterSecret = "U8IdJvLm3y5q86B0ORQk85";
     private static String url = "http://sdk.open.api.igexin.com/apiex.htm";
     public static String title = "报修";
-    public static String text = "您有一条新的报修订单";
+    public static String text = "您有一条新的报修订单,请尽快处理";
 
     public static void sendAllUserMsg(String title, String text) throws IOException {
 
