@@ -1,9 +1,5 @@
 package tsu.pro.bean;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 public class Repair {
     private String repariID;
     private String repairMoney;
@@ -20,10 +16,20 @@ public class Repair {
     private String repairDes;
     private int ownerID;
 
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
+    private int locationId;
+
 
     private int position;
     private String repairDel;
-    private String repairIdentify;
+    private String repairDetailInfo;
     private String update_Tm;
     private String expectTime;
     private String fixDes;
@@ -37,6 +43,16 @@ public class Repair {
     private String fixImg3;
     private String fixImg4;
     private String fixImg5;
+
+    public String getUserComment() {
+        return userComment;
+    }
+
+    public void setUserComment(String userComment) {
+        this.userComment = userComment;
+    }
+
+    private String userComment;
     private int fixerId;
 
 
@@ -213,12 +229,12 @@ public class Repair {
         this.repairDel = repairDel;
     }
 
-    public String getRepairIdentify() {
-        return repairIdentify;
+    public String getRepairDetailInfo() {
+        return repairDetailInfo;
     }
 
-    public void setRepairIdentify(String repairIdentify) {
-        this.repairIdentify = repairIdentify;
+    public void setRepairDetailInfo(String repairDetailInfo) {
+        this.repairDetailInfo = repairDetailInfo;
     }
 
 }

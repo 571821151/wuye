@@ -23,9 +23,7 @@ public class repairService {
         Repair.setOwnerID(userId);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
         Repair.setUpdate_Tm(df.format(new Date()));
-        if (Repair.getPosition() == 0) {
-            Repair.setRepairInfo(house.getHouseDes() + house.getHouseName());
-        }
+        Repair.setRepairInfo(house.getHouseDes() + house.getHouseName());
         int status = RepairMapper.insert(Repair);
         if (status == 1) {
             st.setStuts("ok");
@@ -39,6 +37,28 @@ public class repairService {
         }
 
 
+    }
+
+    public Stuts SetComments(int repairId, String comment) {
+        Stuts st = new Stuts();
+        Repair repair = RepairMapper.selectId(repairId);
+        if (repair != null && repair.getRepairStates() == 3) {
+            int status = RepairMapper.addComment(repairId, comment);
+            if (status == 1) {
+                st.setStuts("ok");
+                st.setMessage("评论成功");
+                return st;
+
+            } else {
+                st.setStuts("error");
+                st.setMessage("评论失败,维修单状态不正常");
+                return st;
+            }
+        } else {
+            st.setStuts("error");
+            st.setMessage("评论失败,维修单状态不正常");
+            return st;
+        }
     }
 
     public Info<Repair> selectById(int RepairID) {
@@ -55,8 +75,6 @@ public class repairService {
             info.setStatus("error");
             return info;
         }
-
-
     }
 
     public Info<Repair> findList() {

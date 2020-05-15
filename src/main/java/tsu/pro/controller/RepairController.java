@@ -1,11 +1,7 @@
 package tsu.pro.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import tsu.pro.bean.*;
 import tsu.pro.bean.Repair;
@@ -23,8 +19,8 @@ import java.util.List;
 public class RepairController {
     @Autowired
     private repairService repairservice;
-    @Autowired
-    private OwnerService ownerService;
+    //    @Autowired
+//    private OwnerService ownerService;
     @Autowired
     private HouseService houseService;
 
@@ -32,13 +28,16 @@ public class RepairController {
      * 插入保修信息
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Stuts createUser(@ModelAttribute Repair Repair, HttpSession session) {
+    public Stuts createUser(@ModelAttribute Repair repair, HttpSession session) {
         User user = UserUtils.GetUser(session);
         Stuts stuts = new Stuts();
-        if (user != null) {
-            Owner owner = ownerService.selectByUserId(user.getId()).getT();
-            if (owner != null) {
-                House house = houseService.selectById(owner.getownerHouseId()).getT();
+
+        if (repair.getLocationId() > 0) {
+
+            if (user != null) {
+
+                House house = houseService.selectById(repair.getLocationId()).getT();
+
                 try {
                     UserController.users.forEach((k, v) -> {
                         if (!v.getClientid().isEmpty()) {
@@ -57,12 +56,13 @@ public class RepairController {
                 }
 
 
-                return repairservice.insertRepair(Repair, user.getId(), house);
+                return repairservice.insertRepair(repair, user.getId(), house);
             } else
                 stuts.setMessage("该用户非业主");
-        } else
-            stuts.setMessage("用户登陆异常");
 
+        }
+        else
+            stuts.setMessage("未传入维修地点id");
         stuts.setStuts("error");
 
         return stuts;
@@ -77,6 +77,20 @@ public class RepairController {
     @RequestMapping(value = "/repId/{id}", method = RequestMethod.GET)
     public Info<Repair> findbyID(@PathVariable("id") int RepairID) {
         return repairservice.selectById(RepairID);
+
+    }
+
+    /**
+     * 新增评论
+     * ID
+     */
+    @RequestMapping(value = "/addComments", method = RequestMethod.POST)
+    public Stuts addComments(@RequestParam("id") int RepairID, @RequestParam("comments") String commentsInfo, HttpSession session) {
+        User user = UserUtils.GetUser(session);
+        if (user.getUserRole() == 1) {
+            return repairservice.SetComments(RepairID, commentsInfo);
+        } else
+            return Stuts.returnErrorStu("用户状态不正确");
 
     }
 

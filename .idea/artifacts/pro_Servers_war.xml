@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="pro_Servers-0.0.1-SNAPSHOT.war">
+    <root id="archive" name="pro_Servers.war">
       <element id="artifact" artifact-name="pro_Servers:war exploded" />
     </root>
   </artifact>
